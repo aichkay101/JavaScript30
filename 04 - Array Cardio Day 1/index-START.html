@@ -39,28 +39,83 @@
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
 
+        let filterInv = inventors.filter(inventor => inventor.year > 1500 && inventor.year < 1600 );
+        // console.log(filterInv);
+
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
 
+      let firstLastArr = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
+      // console.log(firstLastArr);
+
+
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+      let sortedbyBirth = inventors.sort((a, b) => b.year - a.year);
+      // console.log(sortedbyBirth);
 
-    // Array.prototype.reduce()
+
+      // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+      
+    let allTogather = inventors.reduce((accu, inv) => {
+      let yearsLived = inv.passed - inv.year;
+      return accu + yearsLived
+    },0)
+    // console.log(allTogather);
 
-    // 5. Sort the inventors by years lived
+ // 5. Sort the inventors by years lived
+
+   let sortedByYearsLived = inventors.sort((a,b) => {
+        return (a.passed - a.year) - (b.passed - b.year);
+   })
+  //  console.log(sortedByYearsLived);
+
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+
+    let Boulevards = ["b","b","b"];
+    let filteredByde = Boulevards.filter((item) => item === "de" );
 
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
 
+    let sortedbyLast = people.sort((personA, personB) => {
+
+      let nameSeparateA = personA.split(",");
+      let firstNameA = nameSeparateA[1];
+      let nameSeparateB = personB.split(",");
+      let firstNameB = nameSeparateB[1];
+
+      return firstNameA.localeCompare(firstNameB);
+
+
+    })
+    //  console.log(sortedbyLast);
+
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
 
+// Inside your function, you need an if/else logic:
+// IF the box for the current vehicle doesn't exist: 
+// Create it and set the count to 1.
+// ELSE (if it already exists): Just add 1 to the current number in that box. 
+
+
+
+    let reduceByone = data.reduce((accu, pointer) => {
+      if (!accu[pointer]){
+        accu[pointer] = 1 ;
+      } else {
+        accu[pointer] = accu[pointer] + 1;
+      }
+      return accu;
+    },{})
+
+    console.log(reduceByone);
   </script>
 </body>
 </html>
